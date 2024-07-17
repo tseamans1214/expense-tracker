@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <div>
       <h1 className="head-text text-left">Expense Tracker Home</h1>
-      <h2>Welcome </h2>
+      <h2 className="head-text text-left">Welcome {userInfo.name}!</h2> 
     </div>
     
   );
