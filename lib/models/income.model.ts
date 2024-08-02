@@ -1,17 +1,13 @@
 import mongoose from "mongoose";
 
 const incomeSchema = new mongoose.Schema({
-  id: {
-    type: String,
-    required: true,
-  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "User",
     required: true,
   },
   amount: {
-    type: mongoose.Types.Decimal128,
+    type: String, //mongoose.Types.Decimal128,
     required: true,
   },
   source: {

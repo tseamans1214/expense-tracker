@@ -28,10 +28,11 @@ export async function createIncome({ userId, amount, source, description, path }
         source,
         description,
       });
+      console.log("Income created: " + source + " Amount: " + amount);
   
       // Update User model by pushing thread created into their threads array
       await User.findByIdAndUpdate(userId, {
-        $push: { threads: createdIncome._id },
+        $push: { incomes: createdIncome._id },
       });
 
       // Make changes immediate on site
