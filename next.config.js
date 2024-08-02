@@ -5,7 +5,6 @@ const nextConfig = {
     },
       // Allows program to render mongoose actions
       experimental: {
-        serverActions: true,
         serverComponentsExternalPackages: ["mongoose"],
       },
       eslint: {
