@@ -15,12 +15,6 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   image: String,
-  incomes: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Income",
-    },
-  ],
   onboarded: {
     type: Boolean,
     default : false,
