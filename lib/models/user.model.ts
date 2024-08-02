@@ -15,10 +15,10 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   image: String,
-  income: [
+  incomes: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "income",
+      ref: "Income",
     },
   ],
   onboarded: {
