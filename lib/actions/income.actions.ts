@@ -41,3 +41,45 @@ export async function createIncome({ userId, amount, source, description, path }
       throw new Error(`Failed to create Income: ${error.message}`);
     }
   }
+
+export async function fetchUserIncomes(userId: string) {
+  connectToDB();
+
+  // Create a query fetch all the incomes of a given user
+  const incomeQuery = Income.find({ userId: { $in: userId } })
+
+  // Excecute the query
+  const incomes = await incomeQuery.exec();
+
+  return incomes;
+}
+
+export async function fetchTotalUserIncome(userId: string) {
+  connectToDB();
+
+  // Create a query fetch all the incomes of a given user
+  const incomeQuery = Income.find({ userId: { $in: userId } })
+
+  // Excecute the query
+  const incomes = await incomeQuery.exec();
+
+  let totalIncome = 0;
+  for (let i=0; i<incomes.length; i++) {
+    totalIncome += Number(incomes[i].amount);
+  }
+
+  return totalIncome;
+}
+
+export async function deleteThread(id: string, path: string): Promise<void> {
+  try {
+    connectToDB();
+    //await Income.deleteOne({ id: { $in: id } })
+    await Income.findByIdAndDelete(id);
+
+
+  }
+  catch (error: any) {
+    throw new Error(`Failed to delete Income: ${error.message}`);
+  }
+}

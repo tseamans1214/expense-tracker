@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import User from "../models/user.model";
 
 import { connectToDB } from "../mongoose";
+import Income from "../models/income.model";
 
 export async function fetchUser(userId: string) {
   try {
@@ -60,14 +61,14 @@ export async function updateUser({
   }
 }
 
-// export async function fetchUserPosts(userId: string) {
+// export async function fetchUserIncomes(userId: string) {
 //   try {
 //     connectToDB();
 
 //     // Find all threads authored by the user with the given userId
-//     const threads = await User.findOne({ id: userId }).populate({
-//       path: "threads",
-//       model: Thread,
+//     const incomes = await User.findOne({ id: userId }).populate({
+//       path: "incomes",
+//       model: Income,
 //       populate: [
 //         {
 //           path: "community",
@@ -85,7 +86,7 @@ export async function updateUser({
 //         },
 //       ],
 //     });
-//     return threads;
+//     return incomes;
 //   } catch (error) {
 //     console.error("Error fetching user threads:", error);
 //     throw error;

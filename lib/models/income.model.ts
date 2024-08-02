@@ -7,7 +7,7 @@ const incomeSchema = new mongoose.Schema({
     required: true,
   },
   amount: {
-    type: String, //mongoose.Types.Decimal128,
+    type: mongoose.Types.Decimal128,
     required: true,
   },
   source: {

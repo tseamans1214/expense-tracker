@@ -48,8 +48,6 @@ function AddIncome({ userId }: Props) {
       description: values.description,
       path: pathname,
     });
-
-    router.push("/");
     router.refresh();
   };
 
@@ -70,7 +68,7 @@ function AddIncome({ userId }: Props) {
               </FormLabel>
               <FormControl className='no-focus border border-dark-4 bg-dark-3 text-light-1'>
                 <Input 
-                type="text"
+                type="number"
                 className=''
                 {...field}
                 />
