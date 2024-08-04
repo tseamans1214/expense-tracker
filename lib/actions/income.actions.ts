@@ -71,7 +71,7 @@ export async function fetchTotalUserIncome(userId: string) {
   return totalIncome;
 }
 
-export async function deleteThread(id: string, path: string): Promise<void> {
+export async function deleteIncome(id: string, path: string): Promise<void> {
   try {
     connectToDB();
     //await Income.deleteOne({ id: { $in: id } })
