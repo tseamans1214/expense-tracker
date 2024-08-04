@@ -23,13 +23,13 @@ async function Page() {
             <h1 className="head-text">Add Income</h1>
 
             <AddIncome userId={userIdString} />
-            <h1 className="head-text">{userInfo.name}'s Income</h1>
-            <section className="income-table">
-                <article className="income-card font-bold border-b-2 border-black">
-                    <div className="income-card_col">Source</div>
-                    <div className="income-card_col">Description</div>
-                    <div className="income-card_col">Amount</div>
-                    <div className="income-card_col_s">Delete Income</div>
+            <h1 className="head-text2 text-center mt-6">{userInfo.name}'s Income</h1>
+            <section className="card-table">
+                <article className="card border-b-2 border-black">
+                    <div className="card_col card_col_title">Source</div>
+                    <div className="card_col card_col_title">Description</div>
+                    <div className="card_col card_col_title">Amount</div>
+                    <div className="card_col_s card_col_title">Delete Income</div>
                 </article>
                 {userIncomes.length === 0 ? (
                 <p className="no-result">No Income found</p>
@@ -47,11 +47,11 @@ async function Page() {
                     ))}
                 </>
                 )}
-                <article className="income-card font-bold border-t-2 border-black">
-                    <div className="income-card_col">Total Income</div>
-                    <div className="income-card_col"></div>
-                    <div className="income-card_col">${userTotalIncome}</div>
-                    <div className="income-card_col_s"></div>
+                <article className="card border-t-2 border-black">
+                    <div className="card_col card_col_title"># of Incomes: {userIncomes.length}</div>
+                    <div className="card_col card_col_title">Total Income:</div>
+                    <div className="card_col card_col_title">${userTotalIncome}</div>
+                    <div className="card_col_s card_col_title"></div>
                 </article>
             </section>
         </>

@@ -118,7 +118,7 @@ function AddIncome({ userId }: Props) {
           )}
         />
 
-        <Button type='submit' className='bg-primary-500'>
+        <Button type='submit'>
           Add Income
         </Button>
       </form>

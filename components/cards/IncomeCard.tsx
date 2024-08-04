@@ -16,12 +16,12 @@ const IncomeCard = ({id,userId, amount, source, description } : Props) => {
     const router = useRouter();
     const pathname = usePathname();
     return (
-        <article className="income-card">
-            <div className="income-card_col">{source}</div>
-            <div className="income-card_col">{description}</div>
-            <div className="income-card_col">${amount}</div>
-            <div className="income-card_col_s">
-                <Button className="text-white bg-red-600" onClick={async() =>{
+        <article className="card">
+            <div className="card_col g-text">{source}</div>
+            <div className="card_col g-text">{description}</div>
+            <div className="card_col g-text">${amount}</div>
+            <div className="card_col_s">
+                <Button variant="destructive" onClick={async() =>{
                     await deleteThread(id, pathname);
                         router.refresh();
                     }

@@ -12,6 +12,10 @@
     .head-text {
       @apply text-heading2-bold text-light-1;
     }
+
+    .head-text2 {
+      @apply text-heading3-bold text-light-1;
+    }
   
     /* Activity */
     .activity-card {
@@ -38,25 +42,42 @@
     }
 
     /* Income card */
-    .income-table {
-      @apply mt-9 flex flex-col
+    .card-table {
+      border-radius: 50%;
+      @apply mt-3 flex flex-col 
     }
-    .income-table .income-card:nth-child(even) {
-      @apply bg-green-400
-    }
-
-    .income-table .income-card:nth-child(odd) {
-      @apply bg-green-200
+    .card-table .card:nth-child(even) {
+      background-color: #474b4f;
     }
 
-    .income-card {
+    .card-table .card:nth-child(odd) {
+      background-color: #6b6e70;
+    }
+
+    .card {
       @apply flex justify-between px-1 py-2
     }
-    .income-card_col {
+    .card_col {
+      /* color: #86c232; */
+      /* color: #61892f; */
       width: 28%;
     }
-    .income-card_col_s {
+
+    .card_col_title {
+      /* color: #222629; */
+      color: white;
+      @apply font-extrabold
+    }
+    .card_col_s {
        width: 16%;
+    }
+
+    .g-text {
+      @apply text-lime-500
+    }
+
+    .r-text {
+      @apply text-red-500
     }
   
     /* User card */
