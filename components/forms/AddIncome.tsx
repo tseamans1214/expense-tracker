@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 
 import { IncomeValidation } from "@/lib/validations/income";
 import { createIncome } from "@/lib/actions/income.actions";
@@ -39,8 +38,6 @@ function AddIncome({ userId }: Props) {
   });
 
   const onSubmit = async (values: z.infer<typeof IncomeValidation>) => {
-    //const amountNumber: number = Number(values.amount);
-    console.log("Create Income");
     await createIncome({
       userId: userId,
       amount: values.amount,
