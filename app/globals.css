@@ -36,6 +36,28 @@
     .thread-card_bar {
       @apply relative mt-2 w-0.5 grow rounded-full bg-neutral-800;
     }
+
+    /* Income card */
+    .income-table {
+      @apply mt-9 flex flex-col
+    }
+    .income-table .income-card:nth-child(even) {
+      @apply bg-green-400
+    }
+
+    .income-table .income-card:nth-child(odd) {
+      @apply bg-green-200
+    }
+
+    .income-card {
+      @apply flex justify-between px-1 py-2
+    }
+    .income-card_col {
+      width: 28%;
+    }
+    .income-card_col_s {
+       width: 16%;
+    }
   
     /* User card */
     .user-card {

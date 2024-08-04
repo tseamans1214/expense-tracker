@@ -24,7 +24,13 @@ async function Page() {
 
             <AddIncome userId={userIdString} />
             <h1 className="head-text">{userInfo.name}'s Income</h1>
-            <section className="mt-9 flex flex-col gap-10">
+            <section className="income-table">
+                <article className="income-card font-bold border-b-2 border-black">
+                    <div className="income-card_col">Source</div>
+                    <div className="income-card_col">Description</div>
+                    <div className="income-card_col">Amount</div>
+                    <div className="income-card_col_s">Delete Income</div>
+                </article>
                 {userIncomes.length === 0 ? (
                 <p className="no-result">No Income found</p>
                 ) : (
@@ -41,8 +47,13 @@ async function Page() {
                     ))}
                 </>
                 )}
+                <article className="income-card font-bold border-t-2 border-black">
+                    <div className="income-card_col">Total Income</div>
+                    <div className="income-card_col"></div>
+                    <div className="income-card_col">${userTotalIncome}</div>
+                    <div className="income-card_col_s"></div>
+                </article>
             </section>
-            <h2 className="text-white">Total Income ${userTotalIncome}</h2>
         </>
     )
 }
