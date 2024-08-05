@@ -27,9 +27,9 @@ async function Page() {
             <section className="card-table">
                 <article className="card border-b-2 border-black">
                     <div className="card_col card_col_title">Source</div>
-                    <div className="card_col card_col_title">Description</div>
+                    <div className="card_col card_col_title max-sm:hidden">Description</div>
                     <div className="card_col card_col_title">Amount</div>
-                    <div className="card_col_s card_col_title">Delete Income</div>
+                    <div className="card_col card_col_title">Remove</div>
                 </article>
                 {userIncomes.length === 0 ? (
                 <p className="no-result">No Income found</p>
@@ -48,10 +48,10 @@ async function Page() {
                 </>
                 )}
                 <article className="card border-t-2 border-black">
-                    <div className="card_col card_col_title">#: {userIncomes.length}</div>
-                    <div className="card_col card_col_title">Total:</div>
+                    <div className="card_col card_col_title"># {userIncomes.length}</div>
+                    <div className="card_col card_col_title max-sm:hidden"></div>
                     <div className="card_col card_col_title">${userTotalIncome}</div>
-                    <div className="card_col_s card_col_title"></div>
+                    <div className="card_col card_col_title"></div>
                 </article>
             </section>
         </>
