@@ -60,7 +60,8 @@
     .card_col {
       /* color: #86c232; */
       /* color: #61892f; */
-      width: 28%;
+      /* width: 25%; */
+      @apply w-1/4 max-sm:w-1/3
     }
 
     .card_col_title {
