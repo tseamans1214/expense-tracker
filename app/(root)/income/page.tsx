@@ -48,8 +48,8 @@ async function Page() {
                 </>
                 )}
                 <article className="card border-t-2 border-black">
-                    <div className="card_col card_col_title"># of Incomes: {userIncomes.length}</div>
-                    <div className="card_col card_col_title">Total Income:</div>
+                    <div className="card_col card_col_title">#: {userIncomes.length}</div>
+                    <div className="card_col card_col_title">Total:</div>
                     <div className="card_col card_col_title">${userTotalIncome}</div>
                     <div className="card_col_s card_col_title"></div>
                 </article>

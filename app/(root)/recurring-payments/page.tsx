@@ -47,8 +47,8 @@ async function Page() {
                 </>
                 )}
                 <article className="card border-t-2 border-black">
-                    <div className="card_col card_col_title"># of Recurring Payments: {userRecurringPayments.length}</div>
-                    <div className="card_col card_col_title">Total Recurring Payments:</div>
+                    <div className="card_col card_col_title">#: {userRecurringPayments.length}</div>
+                    <div className="card_col card_col_title">Total:</div>
                     <div className="card_col card_col_title">-${userTotalRecurringPayment}</div>
                     <div className="card_col_s card_col_title"></div>
                 </article>
