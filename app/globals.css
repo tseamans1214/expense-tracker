@@ -80,6 +80,10 @@
     .r-text {
       @apply text-red-500
     }
+
+    .income_table table, th, td {
+      @apply text-white border border-lime-500 p-2
+    }
   
     /* User card */
     .user-card {
