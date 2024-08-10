@@ -6,24 +6,25 @@ import React, { useState, useEffect } from 'react';
 
 interface Props {
     id: string;
-    userId: string
-    amount: string;
-    source: string;
-    description: string;
+    cols: string[];
+    textColor: string;
+    deleteMethod: (id: string, pathname: string) => Promise<void>;
 }
 
-const IncomeCard = ({id,userId, amount, source, description } : Props) => {
+const TableRowCard = ({id, cols, textColor, deleteMethod } : Props) => {
     const router = useRouter();
     const pathname = usePathname();
 
-    return (
+    return ( 
         <article className="card">
-            <div className="card_col g-text">{source}</div>
-            <div className="card_col g-text max-sm:hidden">{description}</div>
-            <div className="card_col g-text">${amount}</div>
+            <>
+                {cols.map((col) => (
+                    <div className={`card_col ${textColor}`}>{col}</div>
+                ))}
+            </>
             <div className="card_col">
                 <Button variant="destructive" size="full"  onClick={async() =>{
-                    await deleteIncome(id, pathname);
+                    await deleteMethod(id, pathname);
                         router.refresh();
                     }
                     }>
@@ -35,4 +36,4 @@ const IncomeCard = ({id,userId, amount, source, description } : Props) => {
     );
 };
 
-export default IncomeCard;
+export default TableRowCard;
