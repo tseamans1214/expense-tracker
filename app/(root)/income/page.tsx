@@ -1,6 +1,6 @@
-import IncomeCard from "@/components/cards/IncomeCard";
+import TableRowCard from "@/components/cards/TableRowCard";
 import AddIncome from "@/components/forms/AddIncome";
-import { fetchUserIncomes, fetchTotalUserIncome } from "@/lib/actions/income.actions";
+import { fetchUserIncomes, fetchTotalUserIncome, deleteIncome } from "@/lib/actions/income.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -27,7 +27,6 @@ async function Page() {
             <section className="card-table">
                 <article className="card border-b-2 border-black">
                     <div className="card_col card_col_title">Source</div>
-                    <div className="card_col card_col_title max-sm:hidden">Description</div>
                     <div className="card_col card_col_title">Amount</div>
                     <div className="card_col card_col_title">Remove</div>
                 </article>
@@ -36,20 +35,18 @@ async function Page() {
                 ) : (
                 <>
                     {userIncomes.map((income) => (
-                    <IncomeCard
-                        key={income._id + ""}
-                        id={income._id + ""}
-                        userId={income.userId + ""}
-                        amount={income.amount + ""}
-                        source={income.source}
-                        description={income.description}
-                    />
+                        <TableRowCard
+                            key={income._id + ""}
+                            id={income._id + ""}
+                            cols={[income.source + "", "$" + income.amount]}
+                            textColor="g-text"
+                            deleteMethod={deleteIncome}
+                        />
                     ))}
                 </>
                 )}
                 <article className="card border-t-2 border-black">
                     <div className="card_col card_col_title"># {userIncomes.length}</div>
-                    <div className="card_col card_col_title max-sm:hidden"></div>
                     <div className="card_col card_col_title">${userTotalIncome}</div>
                     <div className="card_col card_col_title"></div>
                 </article>

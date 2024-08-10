@@ -1,6 +1,6 @@
-import RecurringPaymentCard from "@/components/cards/RecurringPaymentCard";
+import TableRowCard from "@/components/cards/TableRowCard";
 import AddRecurringPayment from "@/components/forms/AddRecurringPayment";
-import { fetchUserRecurringPayments, fetchTotalUserRecurringPayments } from "@/lib/actions/recurring-payment.actions";
+import { fetchUserRecurringPayments, fetchTotalUserRecurringPayments, deleteRecurringPayment } from "@/lib/actions/recurring-payment.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -27,7 +27,6 @@ async function Page() {
             <section className="card-table">
                 <article className="card border-b-2 border-black">
                     <div className="card_col card_col_title">Source</div>
-                    <div className="card_col card_col_title max-sm:hidden">Description</div>
                     <div className="card_col card_col_title">Amount</div>
                     <div className="card_col card_col_title">Remove</div>
                 </article>
@@ -36,19 +35,18 @@ async function Page() {
                 ) : (
                 <>
                     {userRecurringPayments.map((recurringPayment) => (
-                    <RecurringPaymentCard
+                        <TableRowCard
                         key={recurringPayment._id + ""}
                         id={recurringPayment._id + ""}
-                        amount={recurringPayment.amount + ""}
-                        source={recurringPayment.source}
-                        description={recurringPayment.description}
-                    />
+                        cols={[recurringPayment.source + "", "-$" + recurringPayment.amount]}
+                        textColor="r-text"
+                        deleteMethod={deleteRecurringPayment}
+                        />
                     ))}
                 </>
                 )}
                 <article className="card border-t-2 border-black">
                     <div className="card_col card_col_title"># {userRecurringPayments.length}</div>
-                    <div className="card_col card_col_title max-sm:hidden"></div>
                     <div className="card_col card_col_title">-${userTotalRecurringPayment}</div>
                     <div className="card_col card_col_title"></div>
                 </article>

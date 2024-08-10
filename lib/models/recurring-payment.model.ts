@@ -14,10 +14,6 @@ const recurringPaymentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description: {
-    type: String,
-    required: true,
-  },
 });
 
 // First checks if the model of the user exist on the Database,
