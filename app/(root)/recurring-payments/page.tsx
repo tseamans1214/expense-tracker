@@ -1,6 +1,6 @@
 import TableRowCard from "@/components/cards/TableRowCard";
-import AddRecurringPayment from "@/components/forms/AddRecurringPayment";
-import { fetchUserRecurringPayments, fetchTotalUserRecurringPayments, deleteRecurringPayment } from "@/lib/actions/recurring-payment.actions";
+import AddPayment from "@/components/forms/AddPayment";
+import { createRecurringPayment, fetchUserRecurringPayments, fetchTotalUserRecurringPayments, deleteRecurringPayment } from "@/lib/actions/recurring-payment.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -22,7 +22,7 @@ async function Page() {
         <>
             <h1 className="head-text">Add Recurring Payments</h1>
 
-            <AddRecurringPayment userId={userIdString} />
+            <AddPayment userId={userIdString} createMethod={createRecurringPayment} />
             <h1 className="head-text2 text-center mt-6">{userInfo.name}'s Recurring Payments</h1>
             <section className="card-table">
                 <article className="card border-b-2 border-black">

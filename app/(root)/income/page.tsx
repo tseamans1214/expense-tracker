@@ -1,6 +1,6 @@
 import TableRowCard from "@/components/cards/TableRowCard";
-import AddIncome from "@/components/forms/AddIncome";
-import { fetchUserIncomes, fetchTotalUserIncome, deleteIncome } from "@/lib/actions/income.actions";
+import AddPayment from "@/components/forms/AddPayment";
+import { fetchUserIncomes, fetchTotalUserIncome, createIncome, deleteIncome } from "@/lib/actions/income.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -21,8 +21,7 @@ async function Page() {
     return (
         <>
             <h1 className="head-text">Add Income</h1>
-
-            <AddIncome userId={userIdString} />
+            <AddPayment userId={userIdString} createMethod={createIncome} />
             <h1 className="head-text2 text-center mt-6">{userInfo.name}'s Income</h1>
             <section className="card-table">
                 <article className="card border-b-2 border-black">

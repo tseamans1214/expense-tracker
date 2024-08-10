@@ -16,19 +16,31 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-import { IncomeValidation } from "@/lib/validations/income";
+import { PaymentValidation } from "@/lib/validations/payment";
 import { createIncome } from "@/lib/actions/income.actions";
 
 interface Props {
   userId: string;
+  createMethod: ({
+    userId,
+    amount,
+    source,
+    path,
+  }: {
+    userId: string;
+    amount: number;
+    source: string;
+    path: string;
+  }) => Promise<void>;
+  //addMethod: (userId: string, amount: string, source: string, path: string) => Promise<void>;
 }
 
-function AddIncome({ userId }: Props) {
+function AddPayment({ userId, createMethod }: Props) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const form = useForm<z.infer<typeof IncomeValidation>>({
-    resolver: zodResolver(IncomeValidation),
+  const form = useForm<z.infer<typeof PaymentValidation>>({
+    resolver: zodResolver(PaymentValidation),
     defaultValues: {
       userId: userId,
       amount: "",
@@ -36,8 +48,8 @@ function AddIncome({ userId }: Props) {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof IncomeValidation>) => {
-    await createIncome({
+  const onSubmit = async (values: z.infer<typeof PaymentValidation>) => {
+    await createMethod({
       userId: userId,
       amount: values.amount,
       source: values.source,
@@ -52,7 +64,7 @@ function AddIncome({ userId }: Props) {
         className='mt-10 flex flex-col justify-start gap-10'
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        {/* Income Amount Input */}
+        {/* Amount Input */}
         <FormField
           control={form.control}
           name='amount'
@@ -72,7 +84,7 @@ function AddIncome({ userId }: Props) {
             </FormItem>
           )}
         />
-        {/* Income Source Input */}
+        {/* Source Input */}
         <FormField
           control={form.control}
           name='source'
@@ -93,11 +105,11 @@ function AddIncome({ userId }: Props) {
           )}
         />
         <Button type='submit'>
-          Add Income
+          Add
         </Button>
       </form>
     </Form>
   );
 }
 
-export default AddIncome;
+export default AddPayment;
