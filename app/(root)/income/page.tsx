@@ -1,6 +1,6 @@
-import IncomeCard from "@/components/cards/IncomeCard";
-import AddIncome from "@/components/forms/AddIncome";
-import { fetchUserIncomes, fetchTotalUserIncome } from "@/lib/actions/income.actions";
+import TableRowCard from "@/components/cards/TableRowCard";
+import AddPayment from "@/components/forms/AddPayment";
+import { fetchUserIncomes, fetchTotalUserIncome, createIncome, deleteIncome } from "@/lib/actions/income.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -21,13 +21,11 @@ async function Page() {
     return (
         <>
             <h1 className="head-text">Add Income</h1>
-
-            <AddIncome userId={userIdString} />
+            <AddPayment userId={userIdString} createMethod={createIncome} />
             <h1 className="head-text2 text-center mt-6">{userInfo.name}'s Income</h1>
             <section className="card-table">
                 <article className="card border-b-2 border-black">
                     <div className="card_col card_col_title">Source</div>
-                    <div className="card_col card_col_title max-sm:hidden">Description</div>
                     <div className="card_col card_col_title">Amount</div>
                     <div className="card_col card_col_title">Remove</div>
                 </article>
@@ -36,20 +34,18 @@ async function Page() {
                 ) : (
                 <>
                     {userIncomes.map((income) => (
-                    <IncomeCard
-                        key={income._id + ""}
-                        id={income._id + ""}
-                        userId={income.userId + ""}
-                        amount={income.amount + ""}
-                        source={income.source}
-                        description={income.description}
-                    />
+                        <TableRowCard
+                            key={income._id + ""}
+                            id={income._id + ""}
+                            cols={[income.source + "", "$" + income.amount]}
+                            textColor="g-text"
+                            deleteMethod={deleteIncome}
+                        />
                     ))}
                 </>
                 )}
                 <article className="card border-t-2 border-black">
                     <div className="card_col card_col_title"># {userIncomes.length}</div>
-                    <div className="card_col card_col_title max-sm:hidden"></div>
                     <div className="card_col card_col_title">${userTotalIncome}</div>
                     <div className="card_col card_col_title"></div>
                 </article>

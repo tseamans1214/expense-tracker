@@ -12,11 +12,10 @@ interface Params {
     userId: string,
     amount: number,
     source: string,
-    description: string,
     path: string,
 }
   
-export async function createRecurringPayment({ userId, amount, source, description, path }: Params
+export async function createRecurringPayment({ userId, amount, source, path }: Params
   ) {
     try {
       connectToDB();
@@ -25,7 +24,6 @@ export async function createRecurringPayment({ userId, amount, source, descripti
         userId,
         amount,
         source,
-        description,
       });
 
       // Make changes immediate on site

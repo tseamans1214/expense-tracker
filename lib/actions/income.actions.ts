@@ -13,11 +13,10 @@ interface Params {
     userId: string,
     amount: number,
     source: string,
-    description: string,
     path: string,
 }
   
-export async function createIncome({ userId, amount, source, description, path }: Params
+export async function createIncome({ userId, amount, source, path }: Params
   ) {
     try {
       connectToDB();
@@ -26,7 +25,6 @@ export async function createIncome({ userId, amount, source, description, path }
         userId,
         amount,
         source,
-        description,
       });
       console.log("Income created: " + source + " Amount: " + amount);
   
