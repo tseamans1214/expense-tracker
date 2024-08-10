@@ -46,7 +46,7 @@ export async function fetchUserOneTimePayments(userId: string) {
   return payments;
 }
 
-export async function fetchTotalOneTimePayment(userId: string) {
+export async function fetchTotalUserOneTimePayment(userId: string) {
   connectToDB();
 
   // Create a query fetch all the incomes of a given user
