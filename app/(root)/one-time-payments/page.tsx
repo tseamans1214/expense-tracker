@@ -1,5 +1,5 @@
 import TableRowCard from "@/components/cards/TableRowCard";
-import AddPayment from "@/components/forms/AddPayment";
+import AddOneTimePayment from "@/components/forms/AddOneTimePayment";
 import { createOneTimePayment, fetchUserOneTimePayments, fetchTotalUserOneTimePayment, deleteOneTimePayment } from "@/lib/actions/one-time-payment.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
@@ -22,7 +22,7 @@ async function Page() {
         <>
             <h1 className="head-text">Add One Time Payments</h1>
 
-            <AddPayment userId={userIdString} createMethod={createOneTimePayment} />
+            <AddOneTimePayment userId={userIdString} createMethod={createOneTimePayment} />
             <h1 className="head-text2 text-center mt-6">{userInfo.name}'s One-Time Payments</h1>
             <section className="card-table">
                 <article className="card border-b-2 border-black">

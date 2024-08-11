@@ -4,6 +4,7 @@ import { fetchUser } from "../../lib/actions/user.actions";
 import { currentUser } from '@clerk/nextjs/server';
 import { fetchTotalUserIncome } from "@/lib/actions/income.actions";
 import { fetchTotalUserRecurringPayments } from "@/lib/actions/recurring-payment.actions";
+import { fetchTotalUserOneTimePayment } from "@/lib/actions/one-time-payment.actions";
 import { New_Tegomin } from "next/font/google";
 
 export default async function Home() {
@@ -13,7 +14,9 @@ export default async function Home() {
 
   const userIncome = await fetchTotalUserIncome(userInfo._id);
   const userTotalRecurringPayment = await fetchTotalUserRecurringPayments(userInfo._id);
-  const netIncome = Number(userIncome) - Number(userTotalRecurringPayment);
+  const userTotalOneTimePayments = await fetchTotalUserOneTimePayment(userInfo._id);
+  const netIncome = Number(userIncome) - Number(userTotalRecurringPayment) - Number(userTotalOneTimePayments);
+  
   let incomeString = ""
   let textColor = "g-text"
   if (netIncome < 0) {
@@ -23,13 +26,15 @@ export default async function Home() {
     incomeString = "$" + netIncome;
     textColor = "g-text";
   }
-
+  // Date Formatting
+  const currentDate = new Date();
+  const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   return (
     <div>
       <h2 className="head-text text-left">Welcome {userInfo.name}!</h2>
       <table className="income_table my-5">
         <tr>
-          <th colspan="2" className="text-heading2-bold">Monthly Finances</th>
+          <th colspan="2" className="text-heading2-bold">{months[currentDate.getMonth()] + " " + currentDate.getFullYear()} Finances</th>
         </tr>
         <tr>
           <th>Source</th>
@@ -42,6 +47,10 @@ export default async function Home() {
         <tr>
           <td>Recurring Payments</td>
           <td className="r-text">-${userTotalRecurringPayment}</td>
+        </tr>
+        <tr>
+          <td>One Time Payments</td>
+          <td className="r-text">-${userTotalOneTimePayments}</td>
         </tr>
         <tr>
           <td className="font-bold">Net Income</td>
