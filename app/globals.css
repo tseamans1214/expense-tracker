@@ -84,6 +84,13 @@
     .income_table table, th, td {
       @apply text-white border border-lime-500 p-2
     }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      color: white;
+      background-color: white;
+      border-radius: 2px;
+      cursor: pointer;
+    }
   
     /* User card */
     .user-card {

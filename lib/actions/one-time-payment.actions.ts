@@ -10,14 +10,15 @@ interface Params {
     userId: string,
     amount: number,
     source: string,
+    date: string,
     path: string,
 }
   
-export async function createOneTimePayment({ userId, amount, source, path }: Params
+export async function createOneTimePayment({ userId, amount, source, date, path }: Params
   ) {
     try {
       connectToDB();
-      const date = new Date();
+      //const paymentDate = new Date(date);
   
       const createdPayment = await OneTimePayment.create({
         userId,
@@ -56,8 +57,12 @@ export async function fetchTotalUserOneTimePayment(userId: string) {
   const payments = await paymentQuery.exec();
 
   let totalPayment = 0;
+  let currrentDate = new Date();
   for (let i=0; i<payments.length; i++) {
-    totalPayment += Number(payments[i].amount);
+    let paymentDate = new Date(payments[i].date);
+    if (currrentDate.getMonth() == paymentDate.getMonth() && currrentDate.getFullYear() == paymentDate.getFullYear()) {
+      totalPayment += Number(payments[i].amount);
+    }
   }
 
   return totalPayment;
